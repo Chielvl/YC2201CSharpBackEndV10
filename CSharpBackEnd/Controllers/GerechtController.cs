@@ -29,6 +29,12 @@ namespace CSharpBackEnd.Controllers
             voedingswaardenTotaal = new Voedingswaarden();
         }
 
+        [HttpGet]
+        public string Welcome ()
+        {
+            return "Welcome";
+        }
+
         [HttpGet("{receptNaam}/{receptOmschrijving}/{ingredient1}/{gewicht1}/{ingredient2}/{gewicht2}/{ingredient3}/{gewicht3}/{ingredient4}/{gewicht4}/{ingredient5}/{gewicht5}")]
         public Gerecht SetGerecht(string receptNaam, string receptOmschrijving, int ingredient1, int ingredient2, int ingredient3, int ingredient4, int ingredient5, int gewicht1, int gewicht2, int gewicht3, int gewicht4, int gewicht5)
         {
