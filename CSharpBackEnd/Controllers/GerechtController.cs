@@ -1,11 +1,12 @@
-﻿using ClassLibrary1;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using ClassLibrary1;
+using CSharpBackEnd.Controllers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CSharpBackEnd.Controllers
+namespace CSharpBackEnd
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -29,8 +30,8 @@ namespace CSharpBackEnd.Controllers
             voedingswaardenTotaal = new Voedingswaarden();
         }
 
-        [HttpGet]
-        public string Welcome ()
+        [HttpGet("Test")]
+        public string Welcome()
         {
             return "Welcome";
         }
