@@ -11,6 +11,7 @@ namespace ClassLibrary1
         public int Id { get; set; }
         public string Naam { get; set; }
         public int VoedingswaardenId { get; set; }
+        public string Beschrijving { get; set; }
 
         // public Vitaminen Vitaminen { get; set; }
         // public Mineralen Mineralen { get; set; }

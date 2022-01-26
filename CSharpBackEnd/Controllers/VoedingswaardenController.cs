@@ -15,9 +15,10 @@ namespace CSharpBackEnd.Controllers
             databaseContext = dbContext;
         }
 
-        public Voedingswaarden GetVoedingswaarden(int vwId)
+        [HttpGet("{voedingswaardenId}")]
+        public Voedingswaarden GetVoedingswaarden(int voedingswaardenId)
         {
-            var voedingswaarden = databaseContext.Find<Voedingswaarden>(vwId);
+            var voedingswaarden = databaseContext.Find<Voedingswaarden>(voedingswaardenId);
 
             return voedingswaarden;
         }
