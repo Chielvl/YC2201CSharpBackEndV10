@@ -34,12 +34,17 @@ namespace CSharpBackEnd.Controllers
         }
 
         // GET api/<BarcodeController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{code}")]
+        public string Get(string code)
         {
-            
-            return "value";
+            var barcodeProduct = nieuweBarcode.Find<Barcode>(code);
+            if (barcodeProduct != null)
+            {
+                return barcodeProduct.InputField;
+            }
+            return "Onbekend";
         }
+            
 
         // POST api/<BarcodeController>
         [HttpPost]
