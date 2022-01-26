@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClassLibrary1;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,31 @@ namespace CSharpBackEnd.Controllers
     [ApiController]
     public class BarcodeController : ControllerBase
     {
-        
+        DatabaseContext nieuweBarcode;
 
-        
+        public BarcodeController(DatabaseContext databaseContext)
+        {
+            nieuweBarcode = databaseContext;
+        }
+
         // GET: api/<BarcodeController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            Barcode barcode = new Barcode();
+            barcode.Gewicht = 25;
+            barcode.InputField = "wat tekst";
+            nieuweBarcode.Add(barcode);
+            nieuweBarcode.SaveChanges();
             return new string[] { "value1", "value2" };
+            
         }
 
         // GET api/<BarcodeController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
+            
             return "value";
         }
 
