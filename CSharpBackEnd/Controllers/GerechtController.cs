@@ -33,6 +33,7 @@ namespace CSharpBackEnd
         [HttpGet("Test")]
         public string Welcome()
         {
+            Console.WriteLine("Hello World!");
             return "Welcome";
         }
 
