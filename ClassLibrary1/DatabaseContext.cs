@@ -14,6 +14,7 @@ namespace ClassLibrary1
         public DbSet<Gerecht> gerecht { get; set; }
         public DbSet<Product> producten{ get; set; }
         public DbSet<Voedingswaarden> voedingswaardens { get; set; }
+        public DbSet<Barcode> barcodes { get; set; }
 
     }
 }
