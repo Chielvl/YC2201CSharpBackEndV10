@@ -40,7 +40,15 @@ namespace CSharpBackEnd
         [HttpPost("MakeDish")]
         public int MakeDish([FromBody] Gerecht g)
         {
-            Gerecht gerecht = dbc.Gerecht.Where(p => p.Naam == g.Naam).Single();
+            Gerecht gerecht = new Gerecht();
+            try
+            {
+                gerecht = dbc.Gerecht.Where(p => p.Naam == g.Naam).Single();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             if (!gerecht.Equals(g))
             {
                 dbc.Add(g);
