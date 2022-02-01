@@ -12,11 +12,11 @@ namespace CSharpBackEnd.Controllers
     [ApiController]
     public class ProductenController : ControllerBase
     {
-        DatabaseContext databaseContext;
+        DatabaseContext dbc;
 
         public ProductenController(DatabaseContext dbContext)
         {
-            databaseContext = dbContext;
+            dbc = dbContext;
         }
 
         // GET: api/<ProductenController>
@@ -29,17 +29,26 @@ namespace CSharpBackEnd.Controllers
 
         // GET api/<ProductenController>/5
         [HttpGet("{productId}")]
-        public Product GetProduct(int productId)
+        public Voedingswaarden GetProduct(int productId)
         {
-            var product = databaseContext.Find<Product>(productId);
+            var product = dbc.Find<Voedingswaarden>(productId);
 
             return product;
         }
 
-        [HttpGet("find/{productNaam}")]
-        public Product GetProductByName(string productNaam)
+        [HttpGet("find/{productName}")]
+        public Voedingswaarden GetProductByName(string productName) 
         {
-            var product = databaseContext.producten.Where(p => p.Naam == productNaam).Single();
+            Voedingswaarden product = new Voedingswaarden();
+            try
+            {
+                product = dbc.Producten.Where(p => p.Name == productName).Single();
+            }
+            catch (Exception ex)
+            {
+
+            }
+           
             return product;
         }
 
@@ -54,23 +63,6 @@ namespace CSharpBackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-        private bool CompareNames(string name1, string name2)
-        {
-            int missedChars = 0;
-
-            for(int i =0 ; i<name1.Length; i++)
-            {
-                if(name1[i] != name2[i])
-                    missedChars++;
-            }
-
-            if(missedChars <= 2)
-            
-                return true;
-            
-            return false;
         }
     }
 }

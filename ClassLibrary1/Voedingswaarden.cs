@@ -10,7 +10,7 @@ namespace ClassLibrary1
     public class Voedingswaarden
     {   
         public int Id { get; set; }
-        public string Naam { get; set; }
+        public string Name { get; set; }
         public int EnergieKcal { get; set; }         //in kcal
         public int EnergieKj { get; set; }           //in kilo joule
         public int Water { get; set; }              //in grammen
@@ -32,7 +32,7 @@ namespace ClassLibrary1
                 EnergieKcal = (int)((double)EnergieKj / 4.2);
             else if (EnergieKj == 0 && EnergieKcal != 0)              // als energie in kcal niet is ingevuld, maar energie in kj wel, bereken kcal
                 EnergieKj = (int)((double)EnergieKcal * 4.2);
-            else if (EnergieKj == 0 && EnergieKcal != 0)              // als allebei niet zijn ingevuld
+            else if (EnergieKj == 0 && EnergieKcal == 0)              // als allebei niet zijn ingevuld
             {
                 this.EnergieKcal = BerekenEnergieWaarde();
                 EnergieKj = (int)((double)EnergieKcal * 4.2);
