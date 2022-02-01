@@ -11,9 +11,11 @@ namespace ClassLibrary1
     {
         public DatabaseContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Gerecht> gerecht { get; set; }
-        public DbSet<Product> producten{ get; set; }
-        public DbSet<Voedingswaarden> voedingswaardens { get; set; }
+        public DbSet<Gerecht> Gerecht { get; set; }
+        public DbSet<Voedingswaarden> Producten{ get; set; }
+        public DbSet<Voedingswaarden> Voedingswaarden { get; set; }
+        public DbSet<Meal> Meals { get; set; }
+        public DbSet<MealsDishComponents> MealsDishComponents { get; set; }
 
     }
 }

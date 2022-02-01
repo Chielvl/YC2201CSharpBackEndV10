@@ -1,6 +1,8 @@
 ﻿using ClassLibrary1;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace CSharpBackEnd.Controllers
 {
@@ -8,19 +10,42 @@ namespace CSharpBackEnd.Controllers
     [ApiController]
     public class VoedingswaardenController : ControllerBase
     {
-        DatabaseContext databaseContext;
+        DatabaseContext dbc;
 
         public VoedingswaardenController(DatabaseContext dbContext)
         {
-            databaseContext = dbContext;
+            dbc = dbContext;
         }
 
-        [HttpGet("{voedingswaardenId}")]
-        public Voedingswaarden GetVoedingswaarden(int voedingswaardenId)
+        [HttpGet("findById/{nutrientsId}")]
+        public Voedingswaarden GetNutrients(int nutrientsId)
         {
-            var voedingswaarden = databaseContext.Find<Voedingswaarden>(voedingswaardenId);
+            Voedingswaarden Nutrients = dbc.Find<Voedingswaarden>(nutrientsId);
 
-            return voedingswaarden;
+            return Nutrients;
+        }
+
+        [HttpGet("findByName/{nutrientName}")]
+        public Voedingswaarden GetNutrientByName(string nutrientName)
+        {
+            try
+            {
+                Voedingswaarden nutrient = dbc.Voedingswaarden.Where<Voedingswaarden>(p => p.Name == nutrientName).FirstOrDefault();
+                return nutrient;
+            }
+            catch (Exception ex)
+            {
+                return new Voedingswaarden();
+            }
+        }
+
+
+        [HttpPost("Makenutrient")]
+        public int Makenutrient([FromBody] Voedingswaarden v)
+        {
+            dbc.Add(v);
+            dbc.SaveChanges();
+            return v.Id;
         }
     }
 }

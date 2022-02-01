@@ -7,37 +7,36 @@ using System.Threading.Tasks;
 namespace ClassLibrary1
 {
     public class Gerecht
-    { 
-    public int Id { get; set; }
-    public string Naam { get; set; }
-    public string Omschrijving { get; set; }
-    public int Ingredient1Id { get; set; }
-    public int Ingredient2Id { get; set; }
-    public int Ingredient3Id { get; set; }
-    public int Ingredient4Id { get; set; }
-    public int Ingredient5Id { get; set; }
-    public int Gewicht1 { get; set; }
-    public int Gewicht2 { get; set; }
-    public int Gewicht3 { get; set; }
-    public int Gewicht4 { get; set; }
-    public int Gewicht5 { get; set; }
-
-    public string GerechtOproepen()
     {
-        string msg = "";
-        for (int i = 0; i < 5;)
+        public int Id { get; set; }
+        public string Naam { get; set; }
+        public string Description { get; set; }
+        public int Product1Id { get; set; }
+        public int Product2Id { get; set; }
+        public int Product3Id { get; set; }
+        public int Product4Id { get; set; }
+        public int Product5Id { get; set; }
+        public int Weight1 { get; set; }
+        public int Weight2 { get; set; }
+        public int Weight3 { get; set; }
+        public int Weight4 { get; set; }
+        public int Weight5 { get; set; }
+
+
+        public bool Equals(Gerecht gerecht2)
         {
-            //              if(receptArray[0, i] == 0 || receptArray[1, i] == 0)
-            //            {
-            //              msg += "Geen ingredient of gewicht opgegeven";
-            //            break;
-            //      }
-            //    msg += $"Ingredient {i} heeft id {receptArray[0, i]}, in {receptArray[1, i]} grammen" + Environment.NewLine;
-            i++;
+            if (gerecht2 == null)
+                return false;
+
+            if(Id == gerecht2.Id)
+                return true;
+
+            if (Product1Id == gerecht2.Product1Id && Product2Id == gerecht2.Product2Id && Product3Id == gerecht2.Product3Id && Product4Id == gerecht2.Product4Id && Product5Id == gerecht2.Product5Id)
+                return true;
+
+            return false;
         }
 
-        return msg;
     }
 
-}
 }
