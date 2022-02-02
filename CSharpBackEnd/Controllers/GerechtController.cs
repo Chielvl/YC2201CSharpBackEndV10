@@ -115,13 +115,4 @@ namespace CSharpBackEnd
                 g.Weight5
             };
         }
-
-        [HttpGet("GetAllDishes")]
-        public string[] GetDishes()
-        {
-            List<Gerecht> allNamesList = new List<Gerecht>();
-
-            return allNames;
-        }
-    }
 }
