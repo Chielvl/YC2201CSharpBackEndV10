@@ -8,32 +8,32 @@ namespace CSharpBackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsDishComponent : ControllerBase
+    public class MealsDishComponentController : ControllerBase
     {
         DatabaseContext dbc;
 
-        public MealsDishComponent(DatabaseContext dbContext)
+        public MealsDishComponentController(DatabaseContext dbContext)
         {
             dbc = dbContext;
         }
 
-        // GET: api/<MealsDishComponent>
+        // GET: api/<MealsDishComponentController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<MealsDishComponent>/5
+        // GET api/<MealsDishComponentController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<MealsDishComponent>
+        // POST api/<MealsDishComponentController>
         [HttpPost]
-        public void Post([FromBody] MealsDishComponent mdc)
+        public void Post([FromBody] MealsDishComponentController mdc)
         {
 
 
@@ -44,13 +44,13 @@ namespace CSharpBackEnd.Controllers
             dbc.SaveChanges();
         }
 
-        // PUT api/<MealsDishComponent>/5
+        // PUT api/<MealsDishComponentController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<MealsDishComponent>/5
+        // DELETE api/<MealsDishComponentController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

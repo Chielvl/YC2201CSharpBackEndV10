@@ -22,7 +22,7 @@ namespace ClassLibrary1
         public float VitamineE { get; set; }              //in milligrammen
         public float VitamineK { get; set; }              //in microgrammen            
 
-        public Vitaminen(float EnergVitamineAyKcal, float VitamineB1, float VitamineB2, float VitamineB3, float VitamineB6, float VitamineB11, float VitamineB12, float VitamineC, float VitamineD, float VitamineE, float VitamineK)
+        public Vitaminen(float VitamineA, float VitamineB1, float VitamineB2, float VitamineB3, float VitamineB6, float VitamineB11, float VitamineB12, float VitamineC, float VitamineD, float VitamineE, float VitamineK)
         {
             this.VitamineA = VitamineA;
             this.VitamineB1 = VitamineB1;
