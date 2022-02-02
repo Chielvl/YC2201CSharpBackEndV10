@@ -47,7 +47,7 @@ namespace CSharpBackEnd
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);                                  
+                Console.WriteLine(ex.Message);
             }
             if (!gerecht.Equals(g))                                                 //check to see if the dish with this name is the same based on productID or ingredients
             {                                                                       //if not, save a new one.
@@ -57,25 +57,25 @@ namespace CSharpBackEnd
             }                                                                       //if so, update the dish
 
             //update gerecht
-            
+
             return g.Id;
         }
 
         [HttpPost("Totalen")]
         public int StringToList([FromBody] Gerecht gerecht)                         //receive dish as an object
-            {
-             ListMaker(gerecht);                                                    //save products and weights in two seperate arrays, for looping purposes
-            
+        {
+            ListMaker(gerecht);                                                    //save products and weights in two seperate arrays, for looping purposes
+
             totalNutrients = new Voedingswaarden();
 
-            if(gerecht.Naam != null)
+            if (gerecht.Naam != null)
                 totalNutrients.Name = gerecht.Naam;                                 //give dish a name
 
             for (int p = 0; p < Nutrients.Length; p++)
             {
                 if (Nutrients[p] == null)
                     continue;                                                      //skip all empty product indexes in array
-                            
+
                 Voedingswaarden productVW = Nutrients[p];                          //add all nutrients of the product into the combined nutrient
                 totalNutrients.EnergieKcal += productVW.EnergieKcal * WeightValues[p];
                 totalNutrients.EnergieKj += (productVW.EnergieKj * WeightValues[p]);
@@ -94,9 +94,9 @@ namespace CSharpBackEnd
             vc.Makenutrient(totalNutrients);                                    //save nutrients to database;
             MakeDish(gerecht);                                                  //save dish to database;
             return totalNutrients.Id;                                           //return combined nutrients by id to webapp
-        }       
+        }
 
-        private void ListMaker(Gerecht g)       
+        private void ListMaker(Gerecht g)
         {
             Nutrients = new Voedingswaarden[]                                   //save products in an array, for looping purposes
             {
@@ -115,4 +115,5 @@ namespace CSharpBackEnd
                 g.Weight5
             };
         }
+    }
 }
