@@ -29,8 +29,8 @@ namespace CSharpBackEnd.Controllers
         public Voedingswaarden GetNutrientByName(string nutrientName)
         {
             try
-            {
-                Voedingswaarden nutrient = dbc.Voedingswaarden.Where<Voedingswaarden>(p => p.Name == nutrientName).FirstOrDefault();
+            {                                                                                               //Check database for product with same name. Return one entry
+                Voedingswaarden nutrient = dbc.Voedingswaarden.Where(p => p.Name == nutrientName).Single(); //Single() return error if more than one entry is present
                 return nutrient;
             }
             catch (Exception ex)

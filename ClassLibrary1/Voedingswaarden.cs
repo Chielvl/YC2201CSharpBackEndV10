@@ -25,44 +25,44 @@ namespace ClassLibrary1
         public int VoedingsVezels { get; set; }     //in grammen
         public int Alcohol { get; set; }             //in grammen
 
-        public Voedingswaarden(int EnergieKcal, int EnergieKj, int Water, int Eiwit, int Koolhydraten, int Suikers, int Vet, int VerzadigdVet, int EnkelvoudigVerzadigd, int MeervoudigVerzadigd, int Cholesterol, int VoedingsVezels, int Alcohol)
+        public Voedingswaarden(int energieKcal, int energieKj, int Water, int eiwit, int koolhydraten, int suikers, int vet, int verzadigdVet, int enkelvoudigVerzadigd, int meervoudigVerzadigd, int cholesterol, int voedingsVezels, int alcohol)
         {
 
-            if (EnergieKcal == 0 && EnergieKj != 0)                   // als energie in kj niet is ingevuld, maar energie in kcal wel, bereken kj
-                EnergieKcal = (int)((double)EnergieKj / 4.2);
-            else if (EnergieKj == 0 && EnergieKcal != 0)              // als energie in kcal niet is ingevuld, maar energie in kj wel, bereken kcal
-                EnergieKj = (int)((double)EnergieKcal * 4.2);
-            else if (EnergieKj == 0 && EnergieKcal == 0)              // als allebei niet zijn ingevuld
+            if (energieKcal == 0 && energieKj != 0)                   // als energie in kj niet is ingevuld, maar energie in kcal wel, bereken kj
+                energieKcal = (int)((double)energieKj / 4.2);
+            else if (energieKj == 0 && energieKcal != 0)              // als energie in kcal niet is ingevuld, maar energie in kj wel, bereken kcal
+                energieKj = (int)((double)energieKcal * 4.2);
+            else if (energieKj == 0 && energieKcal == 0)              // als allebei niet zijn ingevuld
             {
-                this.EnergieKcal = BerekenEnergieWaarde();
-                EnergieKj = (int)((double)EnergieKcal * 4.2);
-            }
+                this.EnergieKcal = BerekenEnergieWaarde(vet, koolhydraten, eiwit, voedingsVezels, alcohol);
+                energieKj = (int)((double)energieKcal * 4.2);        //berekend kj op basis van kcal
+            }   
 
-            this.EnergieKcal = EnergieKcal;
-            this.EnergieKj = EnergieKj;
+            this.EnergieKcal = energieKcal;
+            this.EnergieKj = energieKj;
             this.Water = Water;
-            this.Eiwit = Eiwit;
-            this.Koolhydraten = Koolhydraten;
-            this.Suikers = Suikers;
-            this.Vet = Vet;
-            this.VerzadigdVet = VerzadigdVet;
-            this.EnkelvoudigVerzadigd = EnkelvoudigVerzadigd;
-            this.MeervoudigVerzadigd = MeervoudigVerzadigd;
-            this.Cholesterol = Cholesterol;
-            this.VoedingsVezels = VoedingsVezels;
-            this.Alcohol = Alcohol;
+            this.Eiwit = eiwit;
+            this.Koolhydraten = koolhydraten;
+            this.Suikers = suikers;
+            this.Vet = vet;
+            this.VerzadigdVet = verzadigdVet;
+            this.EnkelvoudigVerzadigd = enkelvoudigVerzadigd;
+            this.MeervoudigVerzadigd = meervoudigVerzadigd;
+            this.Cholesterol = cholesterol;
+            this.VoedingsVezels = voedingsVezels;
+            this.Alcohol = alcohol;
         }
         public Voedingswaarden()
         { }
 
-        int BerekenEnergieWaarde()
-        {
-            int berekendeEnergieInKcal = 0;
-            berekendeEnergieInKcal += (Vet * 9);
-            berekendeEnergieInKcal += (Koolhydraten * 4);
-            berekendeEnergieInKcal *= (Eiwit * 4);
-            berekendeEnergieInKcal *= (VoedingsVezels * 4);
-            berekendeEnergieInKcal += (Alcohol * 7);
+        int BerekenEnergieWaarde(int vet, int koolhydraten, int eiwit, int voedingsVezels, int alcohol)         
+        {   
+            int berekendeEnergieInKcal = 0;                     //bron: https://www.voedingswaardetabel.nl/watiswat/energie/
+            berekendeEnergieInKcal += (vet * 9);
+            berekendeEnergieInKcal += (koolhydraten * 4);
+            berekendeEnergieInKcal *= (eiwit * 4);
+            berekendeEnergieInKcal *= (voedingsVezels * 4);
+            berekendeEnergieInKcal += (alcohol * 7);
 
             return berekendeEnergieInKcal;
         }

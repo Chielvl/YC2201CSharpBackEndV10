@@ -19,18 +19,10 @@ namespace CSharpBackEnd.Controllers
             dbc = dbContext;
         }
 
-        // GET: api/<ProductenController>
-        // GET: api/<ProductenController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET api/<ProductenController>/5
         [HttpGet("{productId}")]
         public Voedingswaarden GetProduct(int productId)
-        {
+        {                                                                                    //Check database for product with same id
             var product = dbc.Find<Voedingswaarden>(productId);
 
             return product;
@@ -41,28 +33,15 @@ namespace CSharpBackEnd.Controllers
         {
             Voedingswaarden product = new Voedingswaarden();
             try
-            {
-                product = dbc.Producten.Where(p => p.Name == productName).Single();
+            {                                                                               //Check database for product with same name. Return one entry
+                product = dbc.Voedingswaarden.Where(p => p.Name == productName).Single();   //Single() return error if more than one entry is present
             }
             catch (Exception ex)
             {
-
+                                                                                            //Empty catch to return empty Voedingswaarden
             }
            
             return product;
-        }
-
-
-        // POST api/<ProductenController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ProductenController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
